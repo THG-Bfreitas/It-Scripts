@@ -10,7 +10,7 @@ $OutputURL = "C:\temp\Sagitta.launcher.msi"
 $Switches = "/qn"
 $Msilogfile = "Sagitta.launcher.log.txt"
 
-####Decentrilized Logging due to remote installation
+####Decentralized Logging due to remote installation
 $Logfile = "C:\Temp\Logs\$(gc env:computername).log"
 
 Function LogWrite
