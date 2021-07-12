@@ -19,7 +19,7 @@ $scriptlogfile ="scriptlogs.txt"
 Start-Transcript -Path $path\$scriptlogfile
 Write-Host "everything will end up in $path\$scriptlogfile"
 
-
+Write-host "Checking for folder"
 ####Folder check#####
 if (!(Test-Path $Path))
 {
@@ -30,10 +30,11 @@ else
 cls
 write-host "Folder already exists"
 }
-
+Write-host "Downloading $url"
 ##Download File Via $URL
 Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
+Write-host "Starting MSI installation"
 ##Executing MSI 
 msiexec /i $path\$msi /l*v $path\$msilogfile $Switches 
 
