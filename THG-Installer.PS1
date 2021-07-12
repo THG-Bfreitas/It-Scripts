@@ -11,16 +11,13 @@ $URL = "https://support2.vertafore.com/Repository/Documentation/DWN311/Sagitta.L
 $OutputURL = "C:\temp\Sagitta.launcher.msi"
 $Switches = "/qn"
 $Msilogfile = "Sagitta.launcher.log.txt"
+$scriptlogfile ="scriptlogs.txt"
+
+
 
 ####Decentralized Logging due to remote installation
-$Logfile = "C:\Temp\Logs\$(gc env:computername).log"
-
-Function LogWrite
-{
-   Param ([string]$logstring)
-
-   Add-content $Logfile -value $logstring
-}
+Start-Transcript -Path $path\$scriptlogfile
+Write-Host "everything will end up in $path\$scriptlogfile"
 
 
 ####Folder check#####
@@ -40,3 +37,4 @@ Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 ##Executing MSI 
 msiexec /i $path\$msi /l*v $path\$msilogfile $Switches 
 
+Stop-Transcript
