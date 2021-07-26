@@ -113,8 +113,8 @@ $Hostname = hostname
 $MailMessage = (Get-Content -Path $LogPath) -join "`n"
 
 #email results use log file string as body
-$MailSubject = $Hostname + " SpeedTest Results"
-sendMail $MailSubject $MailMessage
+#$MailSubject = $Hostname + " SpeedTest Results"
+#sendMail $MailSubject $MailMessage
 
 #stop logging
 Stop-Transcript
