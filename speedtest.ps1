@@ -1,55 +1,121 @@
-######### Absolute monitoring values ########## 
-$maxpacketloss = 2 #how much % packetloss until we alert. 
-$MinimumDownloadSpeed = 100 #What is the minimum expected download speed in Mbit/ps
-$MinimumUploadSpeed = 20 #What is the minimum expected upload speed in Mbit/ps
-######### End absolute monitoring values ######
- 
-#Replace the Download URL to where you've uploaded the ZIP file yourself. We will only download this file once. 
-#Latest version can be found at: https://www.speedtest.net/nl/apps/cli
-$DownloadURL = "https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-win64.zip"
-$DownloadLocation = "$($Env:ProgramData)\SpeedtestCLI"
-try {
-    $TestDownloadLocation = Test-Path $DownloadLocation
-    if (!$TestDownloadLocation) {
-        new-item $DownloadLocation -ItemType Directory -force
-        Invoke-WebRequest -Uri $DownloadURL -OutFile "$($DownloadLocation)\speedtest.zip"
-        Expand-Archive "$($DownloadLocation)\speedtest.zip" -DestinationPath $DownloadLocation -Force
-    } 
+###### Vars#####
+$Path="C:\temp"
+
+####Decentralized Logging due to remote installation
+Start-Transcript -Path $path\$scriptlogfile
+Write-Host "everything will end up in $path\$scriptlogfile"
+
+Write-host "Checking for folder"
+####Folder check#####
+if (!(Test-Path $Path))
+{
+New-Item -itemType Directory -Path $Path -Name $FolderName
 }
-catch {  
-    write-host "The download and extraction of SpeedtestCLI failed. Error: $($_.Exception.Message)"
-    exit 1
+else
+{
+cls
+write-host "Folder already exists"
 }
-$PreviousResults = if (test-path "$($DownloadLocation)\LastResults.txt") { get-content "$($DownloadLocation)\LastResults.txt" | ConvertFrom-Json }
-$SpeedtestResults = & "$($DownloadLocation)\speedtest.exe" --format=json --accept-license --accept-gdpr
-$SpeedtestResults | Out-File "$($DownloadLocation)\LastResults.txt" -Force
-$SpeedtestResults = $SpeedtestResults | ConvertFrom-Json
- 
-#creating object
-[PSCustomObject]$SpeedtestObj = @{
-    downloadspeed = [math]::Round($SpeedtestResults.download.bandwidth / 1000000 * 8, 2)
-    uploadspeed   = [math]::Round($SpeedtestResults.upload.bandwidth / 1000000 * 8, 2)
-    packetloss    = [math]::Round($SpeedtestResults.packetLoss)
-    isp           = $SpeedtestResults.isp
-    ExternalIP    = $SpeedtestResults.interface.externalIp
-    InternalIP    = $SpeedtestResults.interface.internalIp
-    UsedServer    = $SpeedtestResults.server.host
-    ResultsURL    = $SpeedtestResults.result.url
-    Jitter        = [math]::Round($SpeedtestResults.ping.jitter)
-    Latency       = [math]::Round($SpeedtestResults.ping.latency)
+
+
+#https://www.speedtest.net/apps/cli
+cls
+
+$DownloadURL = "https://install.speedtest.net/app/cli/ookla-speedtest-1.0.0-win64.zip"
+#location to save on the computer. Path must exist or it will error
+$DOwnloadPath = "c:\temp\SpeedTest.Zip"
+$ExtractToPath = "c:\temp\SpeedTest"
+$SpeedTestEXEPath = "C:\temp\SpeedTest\speedtest.exe"
+#Log File Path
+$LogPath = 'c:\temp\SpeedTestLog.txt'
+
+#Start Logging to a Text File
+$ErrorActionPreference="SilentlyContinue"
+Stop-Transcript | out-null
+$ErrorActionPreference = "Continue"
+Start-Transcript -path $LogPath -Append:$false
+#check for and delete existing log files
+
+function RunTest()
+{
+    $test = & $SpeedTestEXEPath --accept-license
+    $test
 }
-$SpeedtestHealth = @()
-#Comparing against previous result. Alerting is download or upload differs more than 20%.
-if ($PreviousResults) {
-    if ($PreviousResults.download.bandwidth / $SpeedtestResults.download.bandwidth * 100 -le 80) { $SpeedtestHealth += "Download speed difference is more than 20%" }
-    if ($PreviousResults.upload.bandwidth / $SpeedtestResults.upload.bandwidth * 100 -le 80) { $SpeedtestHealth += "Upload speed difference is more than 20%" }
+
+function sendMail ($subject, $message)
+{
+    "Sending Email"
+
+    #SMTP server name
+    $smtpServer = "smtp.office365.com"
+    $EmailSender = "noreply@yourdomain.com"
+    $emailPassword = "password123_or_monkey"
+    $port = '587'
+    $from = "noreply@yourdomain.com"
+    $to = "you@yourdomain.com"
+
+    #Creating a Mail object
+    $msg = new-object Net.Mail.MailMessage
+    
+    $emailCredential = New-Object System.Net.NetworkCredential($EmailSender, $emailPassword)
+
+    #Creating SMTP server object
+    $smtp = new-object Net.Mail.SmtpClient($smtpServer)
+    $smtp.Port = $port
+    
+    $smtp.EnableSSl = $true
+    $smtp.Credentials = $emailCredential
+
+    #Email structure
+    $msg.From = $from
+    $msg.To.add($to)
+    $msg.subject = $subject
+    $msg.body = $message 
+
+    #Sending email
+    $smtp.Send($msg)
+
+    write-host "Email Sent" -ForegroundColor Green
+
+};
+
+#check if file exists
+if (Test-Path $SpeedTestEXEPath -PathType leaf)
+{
+    Write-Host "SpeedTest EXE Exists, starting test" -ForegroundColor Green
+    RunTest
 }
- 
-#Comparing against preset variables.
-if ($SpeedtestObj.downloadspeed -lt $MinimumDownloadSpeed) { $SpeedtestHealth += "Download speed is lower than $MinimumDownloadSpeed Mbit/ps" }
-if ($SpeedtestObj.uploadspeed -lt $MinimumUploadSpeed) { $SpeedtestHealth += "Upload speed is lower than $MinimumUploadSpeed Mbit/ps" }
-if ($SpeedtestObj.packetloss -gt $MaxPacketLoss) { $SpeedtestHealth += "Packetloss is higher than $maxpacketloss%" }
- 
-if (!$SpeedtestHealth) {
-    $SpeedtestHealth = "Healthy"
+else
+{
+    Write-Host "SpeedTest EXE Doesn't Exist, starting file download"
+
+    #downloads the file from the URL
+    wget $DownloadURL -outfile $DOwnloadPath
+
+    #Unzip the file
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    function Unzip
+    {
+        param([string]$zipfile, [string]$outpath)
+
+        [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+    }
+
+    Unzip $DOwnloadPath $ExtractToPath
+    RunTest
 }
+
+
+#get hostname
+$Hostname = hostname
+
+#read results out of log file into string
+$MailMessage = (Get-Content -Path $LogPath) -join "`n"
+
+#email results use log file string as body
+$MailSubject = $Hostname + " SpeedTest Results"
+sendMail $MailSubject $MailMessage
+
+#stop logging
+Stop-Transcript
+exit 0
