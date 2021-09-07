@@ -1,0 +1,5 @@
+mklink /j "%UserProfile%\OneDrive - The Hilb Group, LLC\Desktop" "%UserProfile%\Desktop"
+mklink /j "%UserProfile%\OneDrive - The Hilb Group, LLC\Desktop" "%UserProfile%\Documents"
+mklink /j "%UserProfile%\OneDrive - The Hilb Group, LLC\Desktop" "%UserProfile%\Downloads"
+mklink /j "%UserProfile%\OneDrive - The Hilb Group, LLC\Desktop" "%UserProfile%\Pictures"
+mklink /j "%UserProfile%\OneDrive - The Hilb Group, LLC\Desktop" "C:\Users\Public\Netskope"
