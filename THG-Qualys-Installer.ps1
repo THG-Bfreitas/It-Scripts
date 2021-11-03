@@ -34,7 +34,7 @@ Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
 Write-host "Starting EXE installation"
 ##Executing EXE
-QualysCloudAgent.exe CustomerId={0fc184d4-664e-73f8-82c6-ef818818f7ca} ActivationId={9516aef8-b335-4e0e-a8b0-f0365452f452} WebServiceUri=https://qagpublic.qg3.apps.qualys.com/CloudAgent/
+C:\temp\QualysCloudAgent.exe CustomerId={0fc184d4-664e-73f8-82c6-ef818818f7ca} ActivationId={9516aef8-b335-4e0e-a8b0-f0365452f452} WebServiceUri=https://qagpublic.qg3.apps.qualys.com/CloudAgent/
 
 
 Stop-Transcript
