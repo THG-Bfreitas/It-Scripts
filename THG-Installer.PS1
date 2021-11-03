@@ -36,6 +36,6 @@ Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
 Write-host "Starting MSI installation"
 ##Executing MSI 
-msiexec /i $path\$msi /l*v $path\$msilogfile $Switches 
+#msiexec /i $path\$msi /l*v $path\$msilogfile $Switches 
 
 Stop-Transcript
