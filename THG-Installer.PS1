@@ -6,11 +6,11 @@
 
 ###### Vars#####
 $Path="C:\temp"
-$MSI = "Sagitta.launcher.msi"
-$URL = "https://support2.vertafore.com/Repository/Documentation/DWN311/Sagitta.Launcher.msi"
+$MSI = "SentinelInstaller_windows_64bit_v4_6_14_304.msi"
+$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/0b1d75d5c4f7fbc73fd3e4541b4e6b6c9014f9a7/SentinelInstaller_windows_64bit_v4_6_14_304.msi"
 $OutputURL = "C:\temp\Sagitta.launcher.msi"
 $Switches = "/qn"
-$Msilogfile = "Sagitta.launcher.log.txt"
+$Msilogfile = "SentinelInstaller_windows_64bit_v4_6_14_304.msi.txt"
 $scriptlogfile ="scriptlogs.txt"
 
 
