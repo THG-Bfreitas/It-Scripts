@@ -6,7 +6,7 @@
 
 ###### Vars#####
 $Path="C:\temp"
-$ = "SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
+$exe = "SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
 $URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/master/SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
 $OutputURL = "C:\temp\SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
 $Switches = "/qn"
