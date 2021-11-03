@@ -6,9 +6,9 @@
 
 ###### Vars#####
 $Path="C:\temp"
-$MSI = "SentinelInstaller_windows_64bit_v4_6_14_304.msi"
-$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/0b1d75d5c4f7fbc73fd3e4541b4e6b6c9014f9a7/SentinelInstaller_windows_64bit_v4_6_14_304.msi"
-$OutputURL = "C:\temp\SentinelInstaller_windows_64bit_v4_6_14_304.msi"
+$MSI = "SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
+$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/master/SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
+$OutputURL = "C:\temp\SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
 $Switches = "/qn"
 $Msilogfile = "SentinelInstaller_windows_64bit_v4_6_14_304.msi.txt"
 $scriptlogfile ="scriptlogs.txt"
@@ -35,7 +35,7 @@ Write-host "Downloading $url"
 Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
 Write-host "Starting MSI installation"
-##Executing MSI 
-#msiexec /i $path\$msi /l*v $path\$msilogfile $Switches 
+##Executing EXE
+C:\temp\SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe /SITE_TOKEN=eyJ1cmwiOiAiaHR0cHM6Ly91c2VhMS0wMTQuc2VudGluZWxvbmUubmV0IiwgInNpdGVfa2V5IjogImQzNDY1MDVjM2U3M2RmNjEifQ== /SILENT
 
 Stop-Transcript
