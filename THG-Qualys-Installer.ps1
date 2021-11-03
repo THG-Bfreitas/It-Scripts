@@ -7,7 +7,7 @@
 ###### Vars#####
 $Path="C:\temp"
 $exe = "QualysCloudAgent.exe"
-$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/master/SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
+$URL = "https://github.com/THG-Bfreitas/It-Scripts/raw/main/QualysCloudAgent.exe"
 $OutputURL = "C:\temp\QualysCloudAgent.exe"
 $scriptlogfile ="scriptlogs.txt"
 
