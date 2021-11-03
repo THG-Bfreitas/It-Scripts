@@ -8,7 +8,7 @@
 $Path="C:\temp"
 $MSI = "SentinelInstaller_windows_64bit_v4_6_14_304.msi"
 $URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/0b1d75d5c4f7fbc73fd3e4541b4e6b6c9014f9a7/SentinelInstaller_windows_64bit_v4_6_14_304.msi"
-$OutputURL = "C:\temp\Sagitta.launcher.msi"
+$OutputURL = "C:\temp\SentinelInstaller_windows_64bit_v4_6_14_304.msi"
 $Switches = "/qn"
 $Msilogfile = "SentinelInstaller_windows_64bit_v4_6_14_304.msi.txt"
 $scriptlogfile ="scriptlogs.txt"
