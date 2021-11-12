@@ -6,11 +6,11 @@
 
 ###### Vars#####
 $Path="C:\temp"
-$MSI = "SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
-$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/master/SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
-$OutputURL = "C:\temp\SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe"
+$MSI = "Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe"
+$URL = "https://raw.githubusercontent.com/THG-Bfreitas/IRfiles/master/Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe"
+$OutputURL = "C:\temp\Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe"
 $Switches = "/qn"
-$Msilogfile = "SentinelInstaller_windows_64bit_v4_6_14_304.msi.txt"
+$Msilogfile = "Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe.txt"
 $scriptlogfile ="scriptlogs.txt"
 
 
@@ -36,6 +36,6 @@ Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
 Write-host "Starting MSI installation"
 ##Executing EXE
-C:\temp\SentinelInstaller-x64_windows_64bit_v4_6_14_304.exe /SITE_TOKEN=eyJ1cmwiOiAiaHR0cHM6Ly91c2VhMS0wMTQuc2VudGluZWxvbmUubmV0IiwgInNpdGVfa2V5IjogImQzNDY1MDVjM2U3M2RmNjEifQ== /SILENT
+C:\temp\Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe /S /I confirm_d=0,ignoressl=1,hidewindow=1
 
 Stop-Transcript
