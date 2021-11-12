@@ -36,6 +36,6 @@ Invoke-WebRequest -Uri "$URL" -OutFile "$outputURL"
 
 Write-host "Starting MSI installation"
 ##Executing EXE
-C:\temp\Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe /S /I confirm_d=0,ignoressl=1,hidewindow=1
+C:\temp\Splashtop_Streamer_Windows_DEPLOY_INSTALLER_v3.4.8.4_T52TXZYP54PX.exe prevercheck /S /I confirm_d=0,ignoressl=1,hidewindow=1
 
 Stop-Transcript
