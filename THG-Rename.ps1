@@ -1,7 +1,7 @@
 #dynamic computer rename
 $THGDomainuser = $(Get-WMIObject -class Win32_ComputerSystem | select username).username | split-path -Leaf
 $THGDomainuser
-$Dontuse =  "bfreitas"
+$Dontuse =  "system"
 
 #Set the Agency 3 Digit Code
 $THGSHORT =   "rpb"
