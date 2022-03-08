@@ -23,4 +23,4 @@ EXIT
 
 $thgnew = $THGSHORT+$computertype+$THGDomainuser
 write-host $thgnew is being set as computer name. Comptuer name will change on reboot.
-#Rename-Computer -NewName $THGNew
+Rename-Computer -NewName $THGNew
