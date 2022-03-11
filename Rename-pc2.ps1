@@ -9,5 +9,5 @@ $hilbpcname = get-content C:\hilb\Hilb-pcname.txt
 write-host $originalname is the original name
 write-host Renaming pc to $hilbpcname
 
-Rename-Computer -NewName "newname" -DomainCredential $Credentials -Force -restart
+Rename-Computer -NewName $hilbpcname -DomainCredential $Credentials -Force -restart
 
