@@ -24,7 +24,7 @@ EXIT
 
 $thgnew = $THGSHORT+$computertype+$THGDomainuser
 $thgnew | Out-file C:\hilb\Hilb-pcname.txt
-$currentpcname
+write-host $currentpcname is the current pc name
 write-host $thgnew is being set as computer name. Comptuer name will change on reboot.
 
 #Rename-Computer -NewName $THGNew
