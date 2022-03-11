@@ -1,7 +1,7 @@
 $originalname = [System.Net.Dns]::GetHostName()
 
 $username = “rampart\thgadmin”
-$password = ConvertTo-SecureString 'n@kaJl3O0q"&"v' -AsPlainText -Force
+$password = ConvertTo-SecureString \"n@kaJl3O0q&v\" -AsPlainText -Force
 $Credentials = new-object -typename System.Management.Automation.PSCredential `
          -argumentlist $username, $password
 
