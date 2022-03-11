@@ -2,7 +2,8 @@
 $THGDomainuser = $(Get-WMIObject -class Win32_ComputerSystem | select username).username | split-path -Leaf
 $THGDomainuser
 $Dontuse =  "system"
-
+new-item C:\hilb -itemtype directory -ErrorAction SilentlyContinue
+$currentpcname = [System.Net.Dns]::GetHostName()
 #Set the Agency 3 Digit Code
 $THGSHORT =   "rpb"
 cls
@@ -22,5 +23,8 @@ EXIT
 }
 
 $thgnew = $THGSHORT+$computertype+$THGDomainuser
+$thgnew | Out-file C:\hilb\Hilb-pcname.txt
+$currentpcname
 write-host $thgnew is being set as computer name. Comptuer name will change on reboot.
-Rename-Computer -NewName $THGNew
+
+#Rename-Computer -NewName $THGNew
