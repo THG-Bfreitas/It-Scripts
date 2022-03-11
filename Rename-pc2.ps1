@@ -1,7 +1,10 @@
 $originalname = [System.Net.Dns]::GetHostName()
+
 $username = “rampart\thgadmin”
-$password = “n@kaJl3O0q&v"
-$Credentials = New-Object System.Management.Automation.PSCredentical $Username,$Password
+$password = ConvertTo-SecureString "n@kaJl3O0q&v" -AsPlainText -Force
+$Credentials = new-object -typename System.Management.Automation.PSCredential `
+         -argumentlist $username, $password
+
 $hilbpcname = get-content C:\hilb\Hilb-pcname.txt
 write-host $originalname is the original name
 write-host Renaming pc to $hilbpcname
