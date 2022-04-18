@@ -1,5 +1,5 @@
 $DownloadURL = "https://eusthginfrastructure.blob.core.windows.net/thg-remediation-scripts/IRAdobePlugin.msi"
-$software = "IR Adobe"
+$software = "imageright adobe plug-in"
 $installed = (Get-ItemProperty HKLM:\SOFTWARE\Classes\Installer\Products\* | Where { $_.ProductName -match $software }) -ne $null
 
 If(-Not $installed) {
