@@ -9,13 +9,11 @@ mkdir C:\hilb\ -ErrorAction SilentlyContinue
 # Download Installer to 'C:\HILB\'
 Invoke-RestMethod -Uri $DownloadURL -OutFile C:\hilb\IRAdobePlugin.msi
 #Sleep for download to complete
-Start-sleep -seconds 60
+
 
 # Silently Install the Application
 Start-Process  C:\HILB\IRAdobePlugin.msi -ArgumentList "/quiet"
 
-#Delete the installer
-Remove-Item 'C:\HILB\IRAdobePlugin.msi'
 Write-host "HilbCwInstaller.msi Installation script completed"
 Start-Process  -ArgumentList 
 
