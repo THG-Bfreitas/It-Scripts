@@ -4,7 +4,7 @@ $installed = (Get-ItemProperty HKLM:\SOFTWARE\Classes\Installer\Products\* | Whe
 
 If(-Not $installed) {
 	Write-Host "'$software' NOT is installed."
-
+	Write-Host "'$software' is being installed."
 mkdir C:\hilb\ -ErrorAction SilentlyContinue
 # Download Installer to 'C:\HILB\'
 Invoke-RestMethod -Uri $DownloadURL -OutFile C:\hilb\IRAdobePlugin.msi
