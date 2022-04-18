@@ -14,9 +14,6 @@ Invoke-RestMethod -Uri $DownloadURL -OutFile C:\hilb\IRAdobePlugin.msi
 # Silently Install the Application
 Start-Process  C:\HILB\IRAdobePlugin.msi -ArgumentList "/quiet"
 
-Write-host "HilbCwInstaller.msi Installation script completed"
-Start-Process  -ArgumentList 
-
 } else {
 	Write-Host "'$software' is installed."
     write-host "Exiting Script"
