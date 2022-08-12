@@ -6,7 +6,7 @@
 		Start-BitsTransfer -Source $url64 -Destination "c:\intune\mimecast\Mimecast-x64.msi"
 Write-host Installation Starting, closing outlook
 taskkill /im outlook.exe /f
-		Start-Process  "c:\intune\mimecast\Mimecast-x64.msi"
+		Start-Process  "c:\intune\mimecast\Mimecast-x64.msi"   -ArgumentList "/q"
 
 		write-host "32bit office found"
 		$url32 = "https://eusthginfrastructure.blob.core.windows.net/thg-remediation-scripts/Mimecast-x86.msi"
@@ -15,4 +15,4 @@ taskkill /im outlook.exe /f
 Write-host Installation Started
 Write-host Installation Starting, closing outlook
 taskkill /im outlook.exe /f
-        Start-Process  "c:\intune\mimecast\Mimecast-x86.msi" 
+        Start-Process  "c:\intune\mimecast\Mimecast-x86.msi"   -ArgumentList "/q"
