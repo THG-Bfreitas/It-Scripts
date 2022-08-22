@@ -1,3 +1,5 @@
+# powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/Atera-Installer-THGX-Change.ps1'))" 
+
 Write-host Downloading Atera
 
 Start-BitsTransfer -Source "https://HelpdeskSupport841847805.servicedesk.atera.com/GetAgent/Msi/?customerId=95&integratorLogin=bfreitas%40hilbgroup.com&customerName=Rampart%20-%20Brokerage" -Destination "C:\hilb\atera.msi"
