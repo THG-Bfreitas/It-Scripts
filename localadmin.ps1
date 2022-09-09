@@ -11,7 +11,7 @@ Else
 cls
 Write-Host "Okay, Not A server"
 }
-$user = (Get-CimInstance -ClassName Win32_ComputerSystem).Username
+$user = (Get-WmiObject -class Win32_ComputerSystem).Username
 Write-host "Adding $($user) to Administrators group"
 
 Add-LocalGroupMember -Member $($user) -Group Administrators 
