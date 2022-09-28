@@ -47,6 +47,7 @@ $version = .\frx version
 $version | Set-Content C:\hilb\fslogixversion.log
 $FSVER = Get-Content C:\hilb\fslogixversion.log | Select -First 1
 
+start-sleep -seconds 60
 
 $CharArray =$FSVER.Split(":")
 $CharArray[1]
