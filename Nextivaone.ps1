@@ -1,5 +1,5 @@
 
-# powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/AMS360.ps1'))" 
+# powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/Nextivaone.ps1'))" 
 # uninstall 
 
 
