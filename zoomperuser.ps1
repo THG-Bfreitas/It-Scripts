@@ -1,6 +1,67 @@
 # powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/zoomperuser.ps1'))" 
 # uninstall 
 
+# Specify the exclude folder path
+$excludeFolder = "C:\hilb\exclude\"
+
+# Specify the log file path
+$logFile = "C:\hilb\HilbRemediation.log"
+
+# Check if the exclude folder exists
+if (Test-Path -Path $excludeFolder -PathType Container) {
+    # Get the creation date of the folder
+    $creationDate = (Get-Item -Path $excludeFolder).CreationTime
+
+    # Get the current date
+    $currentDate = Get-Date
+
+    # Calculate the number of days since the folder was created
+    $daysSinceCreation = ($currentDate - $creationDate).Days
+
+
+  # Log that the exclude folder is not older than 30 days
+$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+$logMessage = "$timestamp - Checking Exclude folder age ($excludeFolder)"
+Write-Host $logMessage
+Add-Content -Path $logFile -Value $logMessage
+
+
+    # Check if the folder is older than 30 days
+    if ($daysSinceCreation -gt 30) {
+        # Delete the exclude folder
+        Remove-Item -Path $excludeFolder -Recurse -Force
+
+        # Create a new exclude folder
+        New-Item -Path $excludeFolder -ItemType Directory | Out-Null
+
+        # Log the actions
+        $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $logMessage = "$timestamp - Exclude folder ($excludeFolder) was older than 30 days. Deleted and recreated the folder."
+        Write-Host $logMessage
+        Add-Content -Path $logFile -Value $logMessage
+    }
+    else {
+        # Log that the exclude folder is not older than 30 days
+        $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $logMessage = "$timestamp - Exclude folder ($excludeFolder) is not older than 30 days. No action taken."
+        Write-Host $logMessage
+        Add-Content -Path $logFile -Value $logMessage
+    }
+}
+else {
+    # Create the exclude folder if it doesn't exist
+    New-Item -Path $excludeFolder -ItemType Directory | Out-Null
+
+    # Log the creation of the exclude folder
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logMessage = "$timestamp - Exclude folder ($excludeFolder) was not found. Created the folder."
+    Write-Host $logMessage
+    Add-Content -Path $logFile -Value $logMessage
+}
+
+
+
+
 # Create the folder C:\hilb\exclude if it doesn't exist
 $excludeFolder = "C:\hilb\exclude"
 if (-not (Test-Path -Path $excludeFolder -PathType Container)) {
@@ -53,7 +114,7 @@ $filename = "zoom.exe"
 
 
 # Specify the log file path
-$logFile = Join-Path -Path $excludeFolder -ChildPath "HilbRemediation.log"
+$logFile = "C:\hilb\HilbRemediation.log"
 
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $logMessage = "$timestamp - $filename searching in directory: $($startingDirectory)"
@@ -72,7 +133,7 @@ Write-Output $logMessage | Out-File -Append -FilePath $logFile
 $filename = "chrome.exe"
 
 # Specify the log file path
-$logFile = Join-Path -Path $excludeFolder -ChildPath "HilbRemediation.log"
+$logFile = "C:\hilb\HilbRemediation.log"
 
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $logMessage = "$timestamp - $filename searching in directory: $($startingDirectory)"
@@ -91,7 +152,7 @@ $filename = "firefox.exe"
 
 
 # Specify the log file path
-$logFile = Join-Path -Path $excludeFolder -ChildPath "HilbRemediation.log"
+$logFile = "C:\hilb\HilbRemediation.log"
 
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $logMessage = "$timestamp - $filename searching in directory: $($startingDirectory)"
