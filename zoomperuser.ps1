@@ -1,3 +1,6 @@
+# powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/zoomperuser.ps1'))" 
+# uninstall 
+
 # Create the folder C:\hilb\exclude if it doesn't exist
 $excludeFolder = "C:\hilb\exclude"
 if (-not (Test-Path -Path $excludeFolder -PathType Container)) {
