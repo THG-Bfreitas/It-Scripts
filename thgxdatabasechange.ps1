@@ -1,4 +1,4 @@
-powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/thgxdatabasechange.ps1'))" 
+#powershell -command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/THG-Bfreitas/It-Scripts/main/thgxdatabasechange.ps1'))" 
 
 write-host Stopping Service
 Get-service ImageRight* | stop-service -force
